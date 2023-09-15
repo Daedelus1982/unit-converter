@@ -1,9 +1,16 @@
 package converter
 
 fun main() {
-    println("145 centimeters is 1.45 meters")
-    println("2 miles is 3.2187 kilometers")
-    println("5.5 inches is 139.7 millimeters")
-    println("12 degrees Celsius is 53.6 degrees Fahrenheit")
-    println("3 pounds is 1.360776 kilograms")
+    print("Enter a number and a measure: ")
+    val rawLine = readln()
+    val num = rawLine.substringBefore(' ').toInt()
+    val unit = rawLine.substringAfter(' ').lowercase()
+    println(
+        if (!(unit == "km" || unit == "kilometer" || unit == "kilometers"))
+            "Wrong input"
+        else {
+            val singularUnit = if (num == 1) "kilometer" else "kilometers"
+            "$num $singularUnit is ${num * 1000} meters"
+        }
+    )
 }
